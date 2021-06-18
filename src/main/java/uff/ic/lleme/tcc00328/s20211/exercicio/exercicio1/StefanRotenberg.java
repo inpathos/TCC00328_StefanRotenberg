@@ -4,5 +4,6 @@ public class StefanRotenberg {
 
     public static void main(String[] args) {
         System.out.println("Alô mundo!!!!!!!!!");
+        // Testing if my git configs are correct
     }
 }
