@@ -9,50 +9,94 @@ public class StefanRotenberg {
         Scanner teclado = new Scanner(System.in);
         do{
             System.out.println("Digite um numero: ");
-            n.setNumeros(teclado.nextInt(), 1);
+            n.setInteiro(teclado.nextInt(), 1);
         }while(n.saoInteirosPositivos());
-        resultado.serie(n.numero1);
-        System.out.print("\nO " + n.numero1 + "º termo da série é:  ");
+        resultado = resultado.serie(n.numero1);
+        System.out.print("\nO " + n.numero1 + "º termo da série é:\t");
         resultado.printFracao();
+        
     }
 
     static class Fracao{
+        int parteInteira;
         int numerador;
         int denominador;
         
         Fracao(){
             this.numerador = 0;
-            this.denominador = 0;
+            this.denominador = 1;
+            this.parteInteira = 0;
         }
         
         void setFracao(int input1, int input2){
             this.numerador = input1;
             this.denominador = input2;
+            this.parteInteira = 0;
         }
         
         // TODO: Consertar
         Fracao serie(int n){
-            int numerador = 0, denominador = 0, mdc, menosUm = -1;
-            Inteiro aux = new Inteiro();
-            Fracao resultado = new Fracao();
+            // Serie = 4 * SUM(i = 0; i < n; i++){(-1)**i / (2i + 1)}
+            int denominador = 1, umOuMenosUm;
+            Fracao aux = new Fracao(), resultado = new Fracao();
             for(int i = 0; i < n; i++){
-                for(int j = 0; j < n; j++){
-                    menosUm *= menosUm;
-                }
-                numerador += menosUm;
-                denominador += (2 * i) + 1;
+                umOuMenosUm = i % 2 == 0 ? 1 : -1;
+                aux.setFracao(umOuMenosUm, (2 * i) + 1);
+                resultado.somaFracao(aux);
             }
-            resultado.numerador = numerador * 4;
-            aux.setNumeros(numerador, denominador);
-            mdc = aux.mdc();
-            numerador /= mdc;
-            denominador /= mdc;
-            resultado.setFracao(numerador, denominador);
+            resultado.numerador *= 4;
+            resultado.simplifica();
             return resultado;
         } 
         
+        void somaFracao(Fracao parcela){
+            int denominador1 = parcela.denominador, denominador2 = this.denominador;
+            this.numerador *= denominador1;
+            this.denominador *= denominador1;
+            this.numerador += parcela.numerador * denominador2;
+            this.simplifica();
+        }
+        
+        void simplifica(){
+            int mdc = this.mdc();
+            this.numerador /= mdc;
+            this.denominador /= mdc;
+        }
+        
+        int mdc(){
+            int maior, menor, aux = 1, n1 = this.numerador, n2 = this.denominador;
+            maior = n1 > n2 ? n1 : n2;
+            menor = n1 < n2 ? n1 : n2;
+            while(maior % menor != 0){
+                aux = maior % menor;
+                maior = menor;
+                menor = aux;
+            }
+            return menor;
+        }
+        
+        void separaParteInteira(){
+            while(this.numerador >= this.denominador){
+                this.parteInteira++;
+                this.numerador -= this.denominador;
+            }
+        }
+        
         void printFracao(){
             System.out.print(this.numerador + "/" + this.denominador);
+        }
+        
+        void printFracaoImpropria(){
+            this.separaParteInteira();
+            if(this.parteInteira > 0){ 
+                System.out.print(this.parteInteira);
+                if(this.numerador != 0){
+                    System.out.print(" + ");
+                }
+            }
+            if(this.numerador != 0){
+                System.out.print(this.numerador + "/" + this.denominador);
+            }         
         }
     }
     
@@ -65,7 +109,7 @@ public class StefanRotenberg {
             this.numero2 = 0;
         }
 
-        void setNumeros(int input1, int input2){
+        void setInteiro(int input1, int input2){
             this.numero1 = input1;
             this.numero2 = input2;
         }
