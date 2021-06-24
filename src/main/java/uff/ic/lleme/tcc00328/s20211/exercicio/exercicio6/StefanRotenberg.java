@@ -34,7 +34,6 @@ public class StefanRotenberg {
             this.parteInteira = 0;
         }
         
-        // TODO: Consertar
         Fracao serie(int n){
             // Serie = 4 * SUM(i = 0; i < n; i++){(-1)**i / (2i + 1)}
             int denominador = 1, umOuMenosUm;
