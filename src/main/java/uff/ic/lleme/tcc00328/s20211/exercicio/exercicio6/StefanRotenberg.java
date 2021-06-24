@@ -10,7 +10,7 @@ public class StefanRotenberg {
         do{
             System.out.println("Digite um numero: ");
             n.setInteiro(teclado.nextInt(), 1);
-        }while(n.saoInteirosPositivos());
+        } while(n.saoInteirosPositivos());
         resultado = resultado.serie(n.numero1);
         System.out.print("\nO " + n.numero1 + "º termo da série é:\t");
         resultado.printFracao();
@@ -35,8 +35,8 @@ public class StefanRotenberg {
         }
         
         Fracao serie(int n){
-            // Serie = 4 * SUM(i = 0; i < n; i++){(-1)**i / (2i + 1)}
-            int denominador = 1, umOuMenosUm;
+            // Serie = 4 * (SUM(i=0 até n-1){(-1)**i / (2i + 1)})
+            int umOuMenosUm;
             Fracao aux = new Fracao(), resultado = new Fracao();
             for(int i = 0; i < n; i++){
                 umOuMenosUm = i % 2 == 0 ? 1 : -1;
