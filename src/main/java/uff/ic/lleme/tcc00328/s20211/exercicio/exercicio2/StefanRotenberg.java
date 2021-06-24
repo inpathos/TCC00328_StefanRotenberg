@@ -4,29 +4,20 @@ import java.util.*;
 public class StefanRotenberg {
 
     public static void main(String[] args){
-        int numero = 0, fatorial = 0;
-        Numero n = new Numero(0);
+        int n = 0;
         Scanner teclado = new Scanner(System.in);
         do{
             System.out.println("Digite um numero inteiro positivo: ");
-            numero = teclado.nextInt();
-        }while(numero <= 0);
-        n.numero = numero;
-        fatorial = n.fatorial();
-        System.out.println(n.numero + "! = " + fatorial);
+            n = teclado.nextInt();
+        }while(n <= 0);
+        System.out.println(n + "! = " + fatorialWhile(n));
     }
-    static class Numero{
-        public int numero;
-        Numero(int input){
-            this.numero = input;
-        }
-        public int fatorial(){
-            if(this.numero == 1) return 1;
-            int resultado = 1, n = 1;
-            do{
-                resultado *= n++;
-            } while(n <= this.numero);
-            return resultado;
-        }
+    
+    static int fatorialWhile(int n){
+	int resultado = 1, aux = 1;
+	while(aux <= n){ 
+	    resultado *= aux++;
+	} 
+	return resultado;
     }
 }
