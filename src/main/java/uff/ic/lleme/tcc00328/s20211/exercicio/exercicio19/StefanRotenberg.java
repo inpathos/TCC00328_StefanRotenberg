@@ -4,12 +4,9 @@ import java.util.*;
 public class StefanRotenberg {
 
     public static void main(String[] args){
-	int quantosDados = 2;
-	List<Integer> vencedores = Arrays.asList(7, 11);
-	List<Integer> perdedores = Arrays.asList(2, 3, 12);
         for(int i = 0; i < 15; i++){
 	    System.out.println((i+1) + "º jogo:");
-	    Jogo jogo = new Jogo(quantosDados, vencedores, perdedores);
+	    Jogo jogo = new Jogo();
 	    jogo.jogarJogo();
 	}   
     }
@@ -46,6 +43,15 @@ public class StefanRotenberg {
 	List<Dado>	dados;
 	int		rolagem;
 	
+	Jogo(){
+	    this.quantosDados = 2;
+	    this.dados = new ArrayList<>();
+	    for(int i = 0; i < quantosDados; i++) this.dados.add(new Dado());
+	    this.ehPrimeiraRodada = true;
+	    this.vencedores = Arrays.asList(7, 11);
+	    this.perdedores = Arrays.asList(2, 3, 12);
+	}
+	    
 	Jogo(int quantosDados, List<Integer> vencedores, List<Integer> perdedores){
 	    this.quantosDados = quantosDados;
 	    this.dados = new ArrayList<>();
