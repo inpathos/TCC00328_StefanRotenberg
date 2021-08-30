@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aula.exemplo.thread.forkJoin;
+package uff.ic.lleme.tcc00328.aula.exemplo.thread.forkJoin.statusAluno;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +12,7 @@ public class MainForkMean {
         List<Aluno> alunos = new ArrayList<>();
 
         { // inicialização da lista de alunos
-            for (int i = 0; i < 50000000; i++) {
+            for (int i = 0; i < 10000000; i++) {
                 Aluno aluno = new Aluno(i);
                 aluno.n1 = Math.random() * 11; // Math.random() --> [0,1)
                 aluno.n2 = Math.random() * 11;

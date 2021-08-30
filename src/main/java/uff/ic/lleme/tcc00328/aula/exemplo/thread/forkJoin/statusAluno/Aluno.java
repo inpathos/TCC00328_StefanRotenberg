@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aula.exemplo.thread.forkJoin;
+package uff.ic.lleme.tcc00328.aula.exemplo.thread.forkJoin.statusAluno;
 
 public class Aluno {
 
