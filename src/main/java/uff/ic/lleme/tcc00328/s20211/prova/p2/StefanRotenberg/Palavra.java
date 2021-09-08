@@ -5,23 +5,29 @@ import java.util.*;
 public class Palavra {
     public String fonetica;
     public String grafia;
-    public Set<Sinonimos> significados;
+    public Set<Sinonimos> sinonimos;
     
     public Palavra(){
-	this.significados = new HashSet<>();
+	this.sinonimos = new HashSet<>();
+    }
+    
+    public Palavra(String grafia){
+	this.sinonimos = new HashSet<>();
+	this.grafia = grafia;
     }
     
     public Palavra(String grafia, String fonetica){
 	this.grafia   = grafia;
 	this.fonetica = fonetica;
-	this.significados = new HashSet<>();
+	this.sinonimos = new HashSet<>();
     }
     
     public void printPalavra(){
 	System.out.print(this.grafia + " /" + this.fonetica + "/: \n");
 	int i = 1;
-	for(Sinonimos s : this.significados){
-	    System.out.println("\tsignificado " + (i++) + ": " + s.significado);
+	for(Sinonimos s : this.sinonimos){
+	    System.out.print("\n\tsignificado " + (i++) + ": ");
+	    s.printSinonimos();
 	}
     }
 }

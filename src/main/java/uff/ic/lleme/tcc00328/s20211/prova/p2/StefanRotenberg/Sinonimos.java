@@ -16,10 +16,11 @@ public abstract class Sinonimos {
     }
     
     public void printSinonimos(){
-	System.out.println("\"" + this.significado + "\":");
-	System.out.print("\n\tPalavras com esse significado: ");
+	System.out.print("\"" + this.significado + "\":");
+	System.out.print("\n\tSinonimos com esse significado: ");
 	for(Palavra p : this.palavras){
-	    System.out.println(p.grafia + "\t");
+	    System.out.print(p.grafia + "\t");
 	}
+	System.out.println();
     }
 }
